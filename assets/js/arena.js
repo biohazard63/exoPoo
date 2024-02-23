@@ -11,6 +11,8 @@ document.addEventListener("DOMContentLoaded", () => {
     new WarriorAxe("Axe Warrior", 10, 100, "../assets/img/Archer.png"),
     new WarriorSword("Sword Warrior", 10, 100, "../assets/img/Knight.png"),
     new WarriorSpear("Spear Warrior", 10, 100, "../assets/img/spaear.png"),
+    new WarriorShield("Shield Warrior", 10, 100, "../assets/img/shield.png"),
+    new WarriorArcher("Archer Warrior", 10, 100, "../assets/img/Archer2.png"),
   ];
 
   /**
@@ -59,10 +61,30 @@ document.addEventListener("DOMContentLoaded", () => {
     createWarriorElement(warrior2, 'warrior2');
 
     while (warrior1.isAlive() && warrior2.isAlive()) {
+      // Si le guerrier1 est un WarriorShield, il a une chance de bloquer l'attaque
+      if (warrior1 instanceof WarriorShield) {
+        warrior1.block();
+      }
+
+      // Si le guerrier1 est un WarriorArcher, il a une chance de tirer une flèche
+      if (warrior1 instanceof WarriorArcher) {
+        warrior1.shootArrow();
+      }
+
+      // Si le guerrier2 est un WarriorShield, il a une chance de bloquer l'attaque
+      if (warrior2 instanceof WarriorShield) {
+        warrior2.block();
+      }
+
+      // Si le guerrier2 est un WarriorArcher, il a une chance de tirer une flèche
+      if (warrior2 instanceof WarriorArcher) {
+        warrior2.shootArrow();
+      }
+
       warrior1.attack(warrior2);
       warrior2.attack(warrior1);
-        console.log(warrior1.name,warrior1.life);
-        console.log(warrior2.name,warrior2.life);
+      console.log(warrior1.name,warrior1.life);
+      console.log(warrior2.name,warrior2.life);
     }
 
     const winner = warrior1.isAlive() ? warrior1 : warrior2;

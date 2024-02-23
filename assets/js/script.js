@@ -102,3 +102,77 @@ class WarriorSpear extends Warrior {
     }
   }
 }
+class WarriorShield extends Warrior {
+  constructor(name, power, life, image) {
+    super(name, power, life, image);
+    this.isBlocking = false;
+  }
+
+  block() {
+    let random = Math.random();
+    if (random <= 0.4) {
+      this.isBlocking = true;
+      console.log(`${this.name} bloque l'attaque !`);
+    } else {
+      this.isBlocking = false;
+    }
+  }
+
+  attack(opponent) {
+    if (opponent.isBlocking) {
+      console.log(`${opponent.name} a bloqué l'attaque !`);
+      return;
+    }
+
+    let damage = this.power;
+    if (opponent instanceof WarriorSword) {
+      damage *= 2;
+    }
+    let random = Math.random();
+    if (random <= 0.05) {
+      damage *= 2;
+      console.log('Coup critique !');
+    }
+    opponent.life -= damage;
+    if (opponent.life < 0) {
+      opponent.life = 0;
+    }
+  }
+}
+
+class WarriorArcher extends Warrior {
+  constructor(name, power, life, image) {
+    super(name, power, life, image);
+    this.isArrowShot = false;
+  }
+
+  shootArrow() {
+    let random = Math.random();
+    if (random <= 0.4) {
+      this.isArrowShot = true;
+      console.log(`${this.name} tire une flèche !`);
+    } else {
+      this.isArrowShot = false;
+    }
+  }
+
+  attack(opponent) {
+    let damage = this.power;
+    if (this.isArrowShot) {
+      damage *= 2;
+      console.log(`${this.name} inflige le double des dégâts avec sa flèche !`);
+    }
+    if (opponent instanceof WarriorShield) {
+      damage *= 2;
+    }
+    let random = Math.random();
+    if (random <= 0.05) {
+      damage *= 2;
+      console.log('Coup critique !');
+    }
+    opponent.life -= damage;
+    if (opponent.life < 0) {
+      opponent.life = 0;
+    }
+  }
+}
