@@ -33,7 +33,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const populateModal = () => {
     const modalContent = document.querySelector('.modal-content');
     modalContent.innerHTML = ''; // Clear the modal content
-warriors.forEach((warrior, index) => {
+    warriors.forEach((warrior, index) => {
   const button = document.createElement('button');
   button.textContent = `Select ${warrior.name}`;
   button.onclick = () => {
@@ -45,6 +45,14 @@ warriors.forEach((warrior, index) => {
       console.log(`Warrior 2 selected: ${warrior2.name}`);
     } else {
       console.error('Both warriors are already selected');
+    }
+
+    // Check if both warriors are selected
+    if (warrior1 && warrior2) {
+      // If both warriors are selected, start the game
+      startGame();
+      // Close the modal
+      modal.style.display = "none";
     }
   };
 
@@ -59,7 +67,7 @@ warriors.forEach((warrior, index) => {
 
   modalContent.appendChild(div); // Append the div to the modalContent
 });
-  };
+    };
 
   const startGame = () => {
     if (!warrior1 || !warrior2) {
