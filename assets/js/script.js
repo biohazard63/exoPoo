@@ -44,16 +44,33 @@ class Warrior {
 }
 
 class WarriorAxe extends Warrior {
+  constructor(name, power, life, image) {
+    super(name, power, life, image);
+    this.isBerserk = false;
+  }
+
+  goBerserk() {
+    let random = Math.random();
+    if (random <= 0.4) {
+      this.isBerserk = true;
+      console.log(`${this.name} entre en mode Berserk !`);
+    } else {
+      this.isBerserk = false;
+    }
+  }
+
   attack(opponent) {
     let damage = this.power;
+    if (this.isBerserk) {
+      damage *= 2;
+      console.log(`${this.name} inflige le double des dégâts en mode Berserk !`);
+    }
     if (opponent instanceof WarriorSword) {
       damage *= 2;
     }
-    // Générer un nombre aléatoire entre 0 et 1
     let random = Math.random();
-    // Si le nombre est inférieur ou égal à 0.05, alors le coup est un coup critique
     if (random <= 0.05) {
-      damage *= 2; // Le coup critique inflige le double des dégâts
+      damage *= 2;
       console.log('Coup critique !');
     }
     opponent.life -= damage;
@@ -62,18 +79,34 @@ class WarriorAxe extends Warrior {
     }
   }
 }
-
 class WarriorSword extends Warrior {
+  constructor(name, power, life, image) {
+    super(name, power, life, image);
+    this.isParrying = false;
+  }
+
+  parry() {
+    let random = Math.random();
+    if (random <= 0.4) {
+      this.isParrying = true;
+      console.log(`${this.name} se prépare à parer l'attaque suivante !`);
+    } else {
+      this.isParrying = false;
+    }
+  }
+
   attack(opponent) {
     let damage = this.power;
+    if (opponent.isParrying) {
+      console.log(`${opponent.name} a paré l'attaque !`);
+      return;
+    }
     if (opponent instanceof WarriorSpear) {
       damage *= 2;
     }
-    // Générer un nombre aléatoire entre 0 et 1
     let random = Math.random();
-    // Si le nombre est inférieur ou égal à 0.05, alors le coup est un coup critique
     if (random <= 0.05) {
-      damage *= 2; // Le coup critique inflige le double des dégâts
+      damage *= 2;
       console.log('Coup critique !');
     }
     opponent.life -= damage;
@@ -84,16 +117,33 @@ class WarriorSword extends Warrior {
 }
 
 class WarriorSpear extends Warrior {
+  constructor(name, power, life, image) {
+    super(name, power, life, image);
+    this.isPiercing = false;
+  }
+
+  pierce() {
+    let random = Math.random();
+    if (random <= 0.4) {
+      this.isPiercing = true;
+      console.log(`${this.name} se prépare à percer la défense de l'adversaire !`);
+    } else {
+      this.isPiercing = false;
+    }
+  }
+
   attack(opponent) {
     let damage = this.power;
+    if (this.isPiercing) {
+      damage *= 1.5;
+      console.log(`${this.name} inflige 1.5 fois les dégâts en perçant la défense !`);
+    }
     if (opponent instanceof WarriorAxe) {
       damage *= 2;
     }
-    // Générer un nombre aléatoire entre 0 et 1
     let random = Math.random();
-    // Si le nombre est inférieur ou égal à 0.05, alors le coup est un coup critique
     if (random <= 0.05) {
-      damage *= 2; // Le coup critique inflige le double des dégâts
+      damage *= 2;
       console.log('Coup critique !');
     }
     opponent.life -= damage;
