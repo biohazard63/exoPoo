@@ -54,7 +54,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     const winner = warrior1.isAlive() ? warrior1 : warrior2;
-    document.getElementById('result').textContent = `${winner.name} Gagne!`;
+    // document.getElementById('result').textContent = `${winner.name} Gagne!`;
     createWarriorElement(winner, 'result')
   };
 
