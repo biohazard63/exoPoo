@@ -1,8 +1,9 @@
 class Warrior {
-  constructor(name, power, life) {
+  constructor(name, power, life,image) {
     this.name = name;
     this.power = power;
     this.life = life;
+    this.image = image;
   }
 
   attack(opponent) {
@@ -15,6 +16,7 @@ class Warrior {
 }
 
 class WarriorAxe extends Warrior {
+
   attack(opponent) {
     if (opponent instanceof WarriorSword) {
       opponent.life -= this.power * 2;
