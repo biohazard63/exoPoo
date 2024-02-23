@@ -1,20 +1,36 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <!-- The character encoding for the HTML document -->
     <meta charset="UTF-8">
+    <!-- Setting the viewport to make your website look good on all devices -->
     <meta name="viewport" content="width=, initial-scale=1.0">
+    <!-- Link to the external CSS file -->
     <link rel="stylesheet" href="assets/css/style.css">
+    <!-- The title of the HTML document -->
     <title>exo POO</title>
 </head>
 <body>
-<h1>Battle Arena</h1>
-<div id="fight" >
-<p id="warrior1"></p>
-<p id="warrior2"></p>
+    <!-- The main heading of the HTML document -->
+    <h1>Battle Arena</h1>
+    <div class="btn">
+        <!-- Button to start the game -->
+        <button id="start">Start</button>
+        <!-- Button to restart the game -->
+        <button id="restart">Restart</button>
+    </div>
+    <div id="fight">
+        <!-- Paragraph to display the first warrior -->
+        <p id="warrior1"></p>
+        <!-- Paragraph to display the second warrior -->
+        <p id="warrior2"></p>
+        <!-- Paragraph to display the result of the game -->
+        <p id="result"></p>
+    </div>
 
-</div>
-<p id="result"></p>
-<script src="assets/js/script.js"></script>
-<script src="assets/js/arena.js"></script>
+    <!-- Link to the external JavaScript file -->
+    <script src="assets/js/script.js"></script>
+    <!-- Link to the external JavaScript file -->
+    <script src="assets/js/arena.js"></script>
 </body>
 </html>

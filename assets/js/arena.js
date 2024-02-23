@@ -1,58 +1,73 @@
-document.addEventListener("DOMContentLoaded", function() {
-  let warriors = [
+/**
+ * This script sets up a game where warriors fight each other.
+ * The game starts when the DOM is fully loaded.
+ */
+document.addEventListener("DOMContentLoaded", () => {
+  /**
+   * An array of warrior objects.
+   * Each warrior is an instance of a Warrior class (WarriorAxe, WarriorSword, or WarriorSpear).
+   */
+  const warriors = [
     new WarriorAxe("Axe Warrior", 10, 100, "../assets/img/Archer.png"),
     new WarriorSword("Sword Warrior", 15, 100, "../assets/img/Knight.png"),
     new WarriorSpear("Spear Warrior", 10, 100, "../assets/img/spaear.png"),
   ];
-  function getRandomWarrior() {
-    let index = Math.floor(Math.random() * warriors.length);
-    return warriors[index];
-  }
 
-  let warrior1 = getRandomWarrior();
-  let warrior2 = getRandomWarrior();
+  /**
+   * Function to get a random warrior from the warriors array.
+   * @returns {Object} A random warrior object.
+   */
+  const getRandomWarrior = () => warriors[Math.floor(Math.random() * warriors.length)];
 
-  while (warrior1 === warrior2) {
-    warrior2 = getRandomWarrior();
-  }
-
-// Créer un nouvel élément div pour le guerrier 1
-  let div1 = document.createElement('div');
-  div1.textContent = `le 1er gladiateur: ${warrior1.name}`;
-  let img1 = document.createElement('img');
-  img1.src = warrior1.image;
-  div1.appendChild(img1);
-  document.getElementById('warrior1').appendChild(div1);
-
-// Créer un nouvel élément div pour le guerrier 2
-  let div2 = document.createElement('div');
-  div2.textContent = `le 2eme gladiateur: ${warrior2.name}`;
-  let img2 = document.createElement('img');
-  img2.src = warrior2.image;
-  div2.appendChild(img2);
-  document.getElementById('warrior2').appendChild(div2);
-  while (warrior1.isAlive() && warrior2.isAlive()) {
-    warrior1.attack(warrior2);
-    warrior2.attack(warrior1);
-  }
-
-if (!warrior1.isAlive() && !warrior2.isAlive()) {
-  document.getElementById('result').textContent = "Egaliter";
-} else {
-  let winner;
-  if (warrior1.isAlive()) {
-    winner = warrior1;
-  } else {
-    winner = warrior2;
-  }
-  document.getElementById('result').textContent = `${winner.name} wins`;
-
-  // Créer un nouvel élément img pour le gagnant
-  let img = document.createElement('img');
-  img.src = winner.image;
-  img.onload = function() {
-    this.classList.add('loaded');
+  /**
+   * Function to create a new HTML element for a warrior.
+   * @param {Object} warrior - The warrior object.
+   * @param {string} id - The id of the HTML element where the warrior element will be appended.
+   */
+  const createWarriorElement = (warrior, id) => {
+    const div = document.createElement('div');
+    div.textContent = `le gladiateur: ${warrior.name}`;
+    const img = document.createElement('img');
+    img.src = warrior.image;
+    div.appendChild(img);
+    document.getElementById(id).appendChild(div);
   };
-  document.getElementById('result').appendChild(img);
-}
-} );
+
+  /**
+   * Function to start the game.
+   * Two different warriors are selected and they fight each other until one of them dies.
+   * The winner is displayed in the 'result' element.
+   */
+  const startGame = () => {
+    let warrior1, warrior2;
+    do {
+      warrior1 = getRandomWarrior();
+      warrior2 = getRandomWarrior();
+    } while (warrior1 === warrior2);
+
+    createWarriorElement(warrior1, 'warrior1');
+    createWarriorElement(warrior2, 'warrior2');
+
+    while (warrior1.isAlive() && warrior2.isAlive()) {
+      warrior1.attack(warrior2);
+      warrior2.attack(warrior1);
+    }
+
+    const winner = warrior1.isAlive() ? warrior1 : warrior2;
+    document.getElementById('result').textContent = `${winner.name} Gagne!`;
+    createWarriorElement(winner, 'result')
+  };
+
+  /**
+   * Function to reset the game.
+   * The 'warrior1', 'warrior2', and 'result' elements are cleared, and a new game starts.
+   */
+  const resetGame = () => {
+    ['warrior1', 'warrior2', 'result'].forEach(id => document.getElementById(id).innerHTML = '');
+    startGame(); // Start a new game after resetting
+  };
+
+  // Add event listeners to the 'start' and 'restart' buttons
+  document.getElementById('start').addEventListener('click', startGame);
+  document.getElementById('restart').addEventListener('click', resetGame);
+});

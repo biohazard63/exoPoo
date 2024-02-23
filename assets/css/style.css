@@ -63,7 +63,8 @@ img.loaded {
     margin-left: 10rem;
     margin-top: 20px;
     font-size: 1.5em;
-    color: #ec1414;
+    font-weight: bold;
+    color: #ffc100;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -71,6 +72,39 @@ img.loaded {
     animation: pulse 2s infinite;
 
 
+}
+.btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 20px;
+    margin-left: 15rem;
+    margin-right: 10rem;
+    flex-direction: row;
+    background-color: rgba(123, 123, 123, 0.2);
+}
+
+button {
+    align-items: center;
+    background-color: #ec1414;
+    color: #f4f4f4;
+    border: none;
+    border-radius: 12px; /* Ajoute des bordures arrondies */
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2); /* Ajoute des ombres */
+    padding: 15px 32px; /* Augmente la taille du bouton */
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 20px; /* Augmente la taille de la police */
+    font-family: 'Courier New', Courier, monospace; /* Change la police */
+    margin: 4px 2px;
+    transition-duration: 0.4s;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #f4f4f4;
+    color: #ec1414;
 }
 
 @keyframes pulse {
