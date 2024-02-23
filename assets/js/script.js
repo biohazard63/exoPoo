@@ -19,10 +19,20 @@ class Warrior {
   /**
    * Attacks an opponent, reducing their life by the warrior's power.
    * @param {Warrior} opponent - The opponent to attack.
-   */
-  attack(opponent) {
-    opponent.life -= this.power;
-  }
+   */attack(opponent) {
+    let damage = this.power;
+    // Générer un nombre aléatoire entre 0 et 1
+    let random = Math.random();
+    // Si le nombre est inférieur ou égal à 0.05, alors le coup est un coup critique
+    if (random <= 0.05) {
+      damage *= 2; // Le coup critique inflige le double des dégâts
+      console.log('Coup critique !');
+    }
+    opponent.life -= damage;
+    if (opponent.life < 0) {
+      opponent.life = 0;
+    }
+    }
 
   /**
    * Checks if the warrior is alive.
@@ -33,56 +43,62 @@ class Warrior {
   }
 }
 
-/**
- * WarriorAxe class represents a warrior with an axe.
- * It extends the Warrior class.
- */
 class WarriorAxe extends Warrior {
-  /**
-   * Attacks an opponent. If the opponent is a WarriorSword, the attack power is doubled.
-   * @param {Warrior} opponent - The opponent to attack.
-   */
   attack(opponent) {
+    let damage = this.power;
     if (opponent instanceof WarriorSword) {
-      opponent.life -= this.power * 2;
-    } else {
-      super.attack(opponent);
+      damage *= 2;
+    }
+    // Générer un nombre aléatoire entre 0 et 1
+    let random = Math.random();
+    // Si le nombre est inférieur ou égal à 0.05, alors le coup est un coup critique
+    if (random <= 0.05) {
+      damage *= 2; // Le coup critique inflige le double des dégâts
+      console.log('Coup critique !');
+    }
+    opponent.life -= damage;
+    if (opponent.life < 0) {
+      opponent.life = 0;
     }
   }
 }
 
-/**
- * WarriorSword class represents a warrior with a sword.
- * It extends the Warrior class.
- */
 class WarriorSword extends Warrior {
-  /**
-   * Attacks an opponent. If the opponent is a WarriorSpear, the attack power is doubled.
-   * @param {Warrior} opponent - The opponent to attack.
-   */
   attack(opponent) {
+    let damage = this.power;
     if (opponent instanceof WarriorSpear) {
-      opponent.life -= this.power * 2;
-    } else {
-      super.attack(opponent);
+      damage *= 2;
+    }
+    // Générer un nombre aléatoire entre 0 et 1
+    let random = Math.random();
+    // Si le nombre est inférieur ou égal à 0.05, alors le coup est un coup critique
+    if (random <= 0.05) {
+      damage *= 2; // Le coup critique inflige le double des dégâts
+      console.log('Coup critique !');
+    }
+    opponent.life -= damage;
+    if (opponent.life < 0) {
+      opponent.life = 0;
     }
   }
 }
 
-/**
- * WarriorSpear class represents a warrior with a spear.
- * It extends the Warrior class.
- */
 class WarriorSpear extends Warrior {
-  /**
-   * Attacks an opponent. If the opponent is a WarriorAxe, the attack power is doubled.
-   * @param {Warrior} opponent - The opponent to attack.
-   */
   attack(opponent) {
+    let damage = this.power;
     if (opponent instanceof WarriorAxe) {
-      opponent.life -= this.power * 2;
-    } else {
-      super.attack(opponent);
+      damage *= 2;
+    }
+    // Générer un nombre aléatoire entre 0 et 1
+    let random = Math.random();
+    // Si le nombre est inférieur ou égal à 0.05, alors le coup est un coup critique
+    if (random <= 0.05) {
+      damage *= 2; // Le coup critique inflige le double des dégâts
+      console.log('Coup critique !');
+    }
+    opponent.life -= damage;
+    if (opponent.life < 0) {
+      opponent.life = 0;
     }
   }
 }
