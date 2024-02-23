@@ -78,7 +78,7 @@ img.loaded {
     justify-content: center;
     margin-top: 20px;
     margin-left: 15rem;
-    margin-right: 10rem;
+    margin-right: 7rem;
     flex-direction: row;
     background-color: rgba(123, 123, 123, 0.2);
 }
@@ -106,27 +106,36 @@ button:hover {
     color: #ec1414;
 }
 
-/* La Modal (arrière-plan) */
+/* La /* La Modal (arrière-plan) */
 .modal {
-    display: none; /* Hidden by default */
-    position: fixed; /* Stay in place */
-    z-index: 1; /* Sit on top */
+    display: none;
+    position: fixed;
+    z-index: 1;
     left: 0;
     top: 0;
-    width: 100%; /* Full width */
-    height: 100%; /* Full height */
-    overflow: auto; /* Enable scroll if needed */
-    background-color: rgb(0,0,0); /* Fallback color */
-    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.4);
 }
 
 /* Contenu de la modal */
 .modal-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
     background-color: #fefefe;
-    margin: 15% auto; /* 15% from the top and centered */
+    margin: 15% auto;
     padding: 20px;
     border: 1px solid #888;
-    width: 80%; /* Could be more or less, depending on screen size */
+    width: 25%;
+}
+
+.warrior-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-direction: row;
 }
 
 /* Le bouton Close (x) */

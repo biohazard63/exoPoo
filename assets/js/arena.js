@@ -61,12 +61,13 @@ document.addEventListener("DOMContentLoaded", () => {
   img.style.width = '50px'; // Set the width of the image
   img.style.height = '50px'; // Set the height of the image
 
-  const div = document.createElement('div'); // Create a div to hold the button and image
-  div.appendChild(button); // Append the button to the div
-  div.appendChild(img); // Append the image to the div
+      const div = document.createElement('div');
+      div.className = 'warrior-container'; // Ajoutez cette ligne pour ajouter une classe à votre div
+      div.appendChild(button);
+      div.appendChild(img);
 
-  modalContent.appendChild(div); // Append the div to the modalContent
-});
+      modalContent.appendChild(div);
+    });
     };
 
   const startGame = () => {
